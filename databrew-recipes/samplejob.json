@@ -1,0 +1,31 @@
+[{
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Product Family"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_NOT",
+        "Value": "[\"Dedicated\"]",
+        "TargetColumn": "Product Family"
+      }
+      
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Operating System"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_NOT",
+        "Value": "[\"Linux\"]",
+        "TargetColumn": "Operating System"
+      }
+    ]
+  }]

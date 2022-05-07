@@ -1,0 +1,1715 @@
+[
+
+
+
+
+
+
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Product Family"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_NOT",
+        "Value": "[\"Dedicated Host\"]",
+        "TargetColumn": "Product Family"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Operating System"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_NOT",
+        "Value": "[\"Linux\"]",
+        "TargetColumn": "Operating System"
+      }
+    ]
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"SKU\",\"OfferTermCode\",\"RateCode\",\"Currency\",\"serviceCode\",\"Location Type\",\"Processor Architecture\",\"Storage Media\",\"Volume Type\",\"Max Volume Size\",\"Max IOPS/volume\",\"Max IOPS Burst Performance\",\"Max throughput/volume\",\"Provisioned\",\"From Location Type\",\"usageType\",\"operation\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Product Family"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_NOT",
+        "Value": "[\"Compute Instance\",\"Dedicated Host\",\"Compute Instance (bare metal)\",\"CPU Credits\",\"Fee\"]",
+        "TargetColumn": "Product Family"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "PriceDescription"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS",
+        "Value": "[\"Unused Res\"]",
+        "TargetColumn": "PriceDescription"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "PricePerUnit"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "LESS_THAN_EQUAL",
+        "Value": "0",
+        "TargetColumn": "PricePerUnit"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "No License required",
+        "sourceColumn": "License Model",
+        "value": "LI"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": " yr",
+        "sourceColumn": "LeaseContractLength",
+        "value": "yr"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Bring your own license",
+        "sourceColumn": "License Model",
+        "value": "BYOL"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Windows",
+        "sourceColumn": "Operating System",
+        "value": "Win"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Quantity",
+        "sourceColumn": "Unit",
+        "value": "Qty"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Reserved",
+        "sourceColumn": "TermType",
+        "value": "Rsv'd"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "standard",
+        "sourceColumn": "OfferingClass",
+        "value": "std"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "convertible",
+        "sourceColumn": "OfferingClass",
+        "value": "cnvt"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": " GiB",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Memory"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Up to 3.0",
+        "sourceColumn": "Clock Speed",
+        "value": "3.0(<=)"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Up to 3.3",
+        "sourceColumn": "Clock Speed",
+        "value": "3.3(<=)"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "  ",
+        "sourceColumn": "Clock Speed",
+        "value": " "
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": " x ",
+        "sourceColumn": "Storage",
+        "value": "x"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "NVMe SSD",
+        "sourceColumn": "Storage",
+        "value": "NVMe"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": " Gigabit",
+        "sourceColumn": "Network Performance",
+        "value": "gbps"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Up to 10gbps",
+        "sourceColumn": "Network Performance",
+        "value": "10gbps(<=)"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Up to 25gbps",
+        "sourceColumn": "Network Performance",
+        "value": "25gbps(<=)"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"Group Description\",\"Transfer Type\",\"From Location\",\"To Location\",\"To Location Type\",\"Physical Cores\",\"Group\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "NA",
+        "sourceColumn": "Pre Installed S/W",
+        "value": "NA/BYOL"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "PartialUpfront",
+        "sourceColumn": "PurchaseOption",
+        "value": "Partial Upfront"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "NoUpfront",
+        "sourceColumn": "PurchaseOption",
+        "value": "No Upfront"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "AllUpfront",
+        "sourceColumn": "PurchaseOption",
+        "value": "All Upfront"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "(Amazon VPC)",
+        "sourceColumn": "PriceDescription",
+        "value": "(VPC)"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "SQL Server",
+        "sourceColumn": "PriceDescription",
+        "value": "SQL"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Windows",
+        "sourceColumn": "PriceDescription",
+        "value": "Win"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Enterprise",
+        "sourceColumn": "PriceDescription",
+        "value": "Ent"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Standard",
+        "sourceColumn": "PriceDescription",
+        "value": "Std"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "with",
+        "sourceColumn": "PriceDescription",
+        "value": "w/"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "reserved",
+        "sourceColumn": "PriceDescription",
+        "value": "Rsv'd"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Dedicated Host",
+        "sourceColumn": "PriceDescription",
+        "value": "Ded Host"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "instance",
+        "sourceColumn": "PriceDescription",
+        "value": "instnc"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Instance",
+        "sourceColumn": "PriceDescription",
+        "value": "Instnc"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Hour",
+        "sourceColumn": "PriceDescription",
+        "value": "Hr"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "hour",
+        "sourceColumn": "PriceDescription",
+        "value": "hr"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "On Demand",
+        "sourceColumn": "PriceDescription",
+        "value": "OnDemand"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Reservation",
+        "sourceColumn": "PriceDescription",
+        "value": "Resv"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "reservation",
+        "sourceColumn": "PriceDescription",
+        "value": "resv"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Dedicated",
+        "sourceColumn": "PriceDescription",
+        "value": "Ded"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Hours",
+        "sourceColumn": "Unit",
+        "value": "Hrs"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Compute Instance",
+        "sourceColumn": "Product Family",
+        "value": "EC2 Instc"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "N. Virginia",
+        "sourceColumn": "Location",
+        "value": "Virginia"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "N. California",
+        "sourceColumn": "Location",
+        "value": "NorCal"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_PATTERN",
+      "Parameters": {
+        "pattern": "-Local",
+        "sourceColumn": "Location",
+        "value": " "
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "-Local",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "(US)",
+        "sourceColumn": "Location",
+        "value": "(US-West)"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "NA",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "US East (",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "Asia Pacific (",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "US West (",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "Middle East (",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "EU (",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "AWS ",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "South America (",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "(",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": ")",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Location"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "LeaseContractLength",
+        "value": "0yr"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "EXTRACT_BETWEEN_POSITIONS",
+      "Parameters": {
+        "endPosition": "1",
+        "sourceColumn": "LeaseContractLength",
+        "startPosition": "0",
+        "targetColumn": "Rsvd Term"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Rsvd Term"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "double",
+        "sourceColumn": "Memory"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Upto",
+        "sourceColumn": "Dedicated EBS Throughput",
+        "value": "<="
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Up to",
+        "sourceColumn": "Dedicated EBS Throughput",
+        "value": "<="
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customValue": "NA",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "true",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Dedicated EBS Throughput"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DUPLICATE",
+      "Parameters": {
+        "sourceColumn": "Instance Type",
+        "targetColumn": "Instance Type Copy"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "SPLIT_COLUMN_SINGLE_DELIMITER",
+      "Parameters": {
+        "includeInSplit": "false",
+        "limit": "1",
+        "pattern": "\\.",
+        "sourceColumn": "Instance Type Copy"
+      }
+    }
+  },  
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Instance Type Copy_2",
+        "targetColumn": "Instance Size"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Instance Type Copy_1",
+        "targetColumn": "FamGen"
+      }
+    }
+  },
+
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "sourceColumn": "FamGen",
+        "collapseConsecutiveWhitespace": "false",
+        "removeAllPunctuation": "true",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "false",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false"
+      }
+    }
+  },
+
+
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Dedicated",
+        "sourceColumn": "Tenancy",
+        "value": "Ded Instc"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "BOOLEAN_OPERATION",
+      "Parameters": {
+        "falseValueExpression": "`Storage`",
+        "functionStepType": "BOOLEAN_OPERATION",
+        "targetColumn": "InstanceStore _GB",
+        "trueValueExpression": "' '",
+        "valueExpression": "`Storage` = 'EBS only' OR `Storage` = 'NA'",
+        "withExpressions": "[]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "false",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "true",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "InstanceStore _GB"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "PurchaseOption",
+        "value": "OnDemand"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "PurchaseOption"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_NOT",
+        "Value": "[\"Partial Upfront\",\"No Upfront\",\"All Upfront\",\"OnDemand\"]",
+        "TargetColumn": "PurchaseOption"
+      }
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "900 GB",
+        "sourceColumn": "InstanceStore _GB",
+        "value": "1x900"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "125 GB",
+        "sourceColumn": "InstanceStore _GB",
+        "value": "1x125"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "225 GB NVMe",
+        "sourceColumn": "InstanceStore _GB",
+        "value": "1x225 NVMe"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "2x1x",
+        "sourceColumn": "InstanceStore _GB",
+        "value": "2x"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "SPLIT_COLUMN_SINGLE_DELIMITER",
+      "Parameters": {
+        "includeInSplit": "true",
+        "limit": "1",
+        "pattern": " ",
+        "sourceColumn": "InstanceStore _GB"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "SPLIT_COLUMN_SINGLE_DELIMITER",
+      "Parameters": {
+        "includeInSplit": "true",
+        "limit": "1",
+        "pattern": "x",
+        "sourceColumn": "InstanceStore _GB_1"
+      }
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "InstanceStore _GB_1_1",
+        "targetColumn": "Instance Store Disks"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "OnDemand",
+        "sourceColumn": "PriceDescription",
+        "value": "OD"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "large",
+        "sourceColumn": "PriceDescription",
+        "value": "lg"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Store Disks",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Store Disks"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "InstanceStore _GB_1_2",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "InstanceStore _GB_2"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "InstanceStore _GB_1_2"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "InstanceStore _GB_1_2",
+        "targetColumn": "Instance Store _ GB per Disk"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "InstanceStore _GB_2",
+        "targetColumn": "Instance Store Disk Type"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "MULTIPLY",
+      "Parameters": {
+        "functionStepType": "MULTIPLY",
+        "sourceColumn1": "Instance Store Disks",
+        "sourceColumn2": "Instance Store _ GB per Disk",
+        "targetColumn": "Total Instance Store _ GB"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "NA/BYOL",
+        "sourceColumn": "Pre Installed S/W",
+        "value": "BYOL"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Current Generation",
+        "targetColumn": "EC2 Gen"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "No",
+        "sourceColumn": "EC2 Gen",
+        "value": "Prev"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Yes",
+        "sourceColumn": "EC2 Gen",
+        "value": "Current"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "GovCloud",
+        "sourceColumn": "Location",
+        "value": "Gov"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Moderate",
+        "sourceColumn": "Network Performance",
+        "value": "Mod"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "Instance Capacity - 2xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "Instance Capacity - 4xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "Instance Capacity - large"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "Instance Capacity - medium"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "Instance Capacity - xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"instanceSKU\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "StartingRange"
+      }
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "GB",
+        "sourceColumn": "Instance Store Disk Type",
+        "value": "NVMe"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "StartingRange"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "GPU"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "GPU"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Yes",
+        "sourceColumn": "Intel AVX Available",
+        "value": "Y"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "No",
+        "sourceColumn": "Intel AVX Available",
+        "value": "N"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Yes",
+        "sourceColumn": "Intel AVX2 Available",
+        "value": "Y"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "No",
+        "sourceColumn": "Intel AVX2 Available",
+        "value": "N"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Yes",
+        "sourceColumn": "Intel Turbo Available",
+        "value": "Y"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "No",
+        "sourceColumn": "Intel Turbo Available",
+        "value": "N"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Yes",
+        "sourceColumn": "Enhanced Networking Supported",
+        "value": "Y"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "No",
+        "sourceColumn": "Enhanced Networking Supported",
+        "value": "N"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - medium"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - large"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 9xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 8xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 4xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 32xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 2xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 24xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 18xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 16xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 12xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 10xlarge"
+      }
+    }
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "900 GB NVMe",
+        "sourceColumn": "Storage",
+        "value": "1x900 NVMe"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "125 GB NVMe",
+        "sourceColumn": "Storage",
+        "value": "1x125 NVMe"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "225 GB NVMe",
+        "sourceColumn": "Storage",
+        "value": "1x225 NVMe"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DUPLICATE",
+      "Parameters": {
+        "sourceColumn": "TermType",
+        "targetColumn": "Platform"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_PATTERN",
+      "Parameters": {
+        "pattern": "^.*$",
+        "sourceColumn": "Platform",
+        "value": "EC2"
+      }
+    }
+  },
+
+
+  
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": " GB ",
+        "sourceColumn": "Storage",
+        "value": " "
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "License Model"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_NOT",
+        "Value": "[\"LI\"]",
+        "TargetColumn": "License Model"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_TEXT",
+      "Parameters": {
+        "pattern": "Red Hat Enterprise Linux with HA",
+        "sourceColumn": "Operating System",
+        "value": "RHEL-HA "
+      }
+    }
+  }
+]

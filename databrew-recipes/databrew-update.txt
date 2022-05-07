@@ -1,0 +1,79 @@
+
+
+
+
+aws databrew update-recipe --name <RECIPE_NAME> --steps file://sharedtenancy.json
+
+aws databrew publish-recipe --name <RECIPE_NAME>
+
+aws databrew delete-job --name <RECIPE_NAME>
+
+$version = (aws databrew describe-recipe --name <RECIPE_NAME> --query 'RecipeVersion' --output text)
+
+@"
+{
+    "DatasetName": "partial-file",
+    "Name": "<JOB_NAME>",
+    "LogSubscription": "ENABLE",
+    "MaxCapacity": 0,
+    "MaxRetries": 0,
+    "Outputs": [
+        {
+            "CompressionFormat": "GZIP",
+            "Format": "PARQUET",
+            "PartitionColumns": [],
+            "Location": {
+                "Bucket": "pricing-cube",
+                "Key": "pricing-cube-final"
+            },
+            "Overwrite": true
+        }
+    ],
+    "RecipeReference": {
+        "Name": "<RECIPE_NAME>",
+        "RecipeVersion":"$version"
+    },
+    "RoleArn": "<ROLE>",
+    "Timeout": 0
+}
+"@ | Out-File -Encoding ASCII job-parameters-shared.json
+
+
+
+aws databrew create-recipe-job --cli-input-json file://job-parameters-shared.json
+
+aws databrew start-job-run --name <JOB_NAME>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
