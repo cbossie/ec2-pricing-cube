@@ -1,6 +1,4 @@
 [
-
-
   {
     "Action": {
       "Operation": "REMOVE_VALUES",
@@ -31,10 +29,6 @@
       }
     ]
   },
-
-
-  
-  
   {
     "Action": {
       "Operation": "DELETE",
@@ -154,7 +148,7 @@
       "Parameters": {
         "pattern": "standard",
         "sourceColumn": "OfferingClass",
-        "value": "std"
+        "value": "Std"
       }
     }
   },
@@ -164,7 +158,7 @@
       "Parameters": {
         "pattern": "convertible",
         "sourceColumn": "OfferingClass",
-        "value": "cnvt"
+        "value": "Cnvt"
       }
     }
   },
@@ -867,7 +861,7 @@
         "sourceColumn": "Instance Type Copy"
       }
     }
-  },  
+  },
   {
     "Action": {
       "Operation": "RENAME",
@@ -886,7 +880,6 @@
       }
     }
   },
-
   {
     "Action": {
       "Operation": "REMOVE_COMBINED",
@@ -907,8 +900,6 @@
       }
     }
   },
-
-
   {
     "Action": {
       "Operation": "REPLACE_TEXT",
@@ -977,21 +968,6 @@
       }
     ]
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "Action": {
       "Operation": "SPLIT_COLUMN_SINGLE_DELIMITER",
@@ -1003,15 +979,6 @@
       }
     }
   },
-
-
-
-
-
-
-
-
-
   {
     "Action": {
       "Operation": "SPLIT_COLUMN_SINGLE_DELIMITER",
@@ -1023,54 +990,6 @@
       }
     }
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "Action": {
       "Operation": "RENAME",
@@ -1274,36 +1193,6 @@
       }
     }
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "Action": {
       "Operation": "DELETE",
@@ -1321,7 +1210,6 @@
       }
     }
   },
-
   {
     "Action": {
       "Operation": "FILL_WITH_EMPTY",
@@ -1427,55 +1315,272 @@
       }
     }
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - medium","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - medium"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - large","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - large"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 9xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 9xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 8xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 8xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 4xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 4xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 32xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 32xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 2xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 2xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 24xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 24xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 18xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 18xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 16xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 16xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 12xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 12xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - 10xlarge","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - 10xlarge"}}},
-  {"Action":{"Operation":"FILL_WITH_CUSTOM","Parameters":{"columnDataType":"string","sourceColumn":"Instance Capacity - metal","value":"0"}}},	{"Action":{"Operation":"CHANGE_DATA_TYPE","Parameters":{"columnDataType":"integer","sourceColumn":"Instance Capacity - metal"}}},
-  
-
-
-
-
-
-
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - medium",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - medium"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - large",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - large"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 9xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 9xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 8xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 8xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 4xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 4xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 32xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 32xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 2xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 2xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 24xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 24xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 18xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 18xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 16xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 16xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 12xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 12xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - 10xlarge",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - 10xlarge"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_CUSTOM",
+      "Parameters": {
+        "columnDataType": "string",
+        "sourceColumn": "Instance Capacity - metal",
+        "value": "0"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "integer",
+        "sourceColumn": "Instance Capacity - metal"
+      }
+    }
+  },
   {
     "Action": {
       "Operation": "REPLACE_TEXT",
@@ -1506,11 +1611,6 @@
       }
     }
   },
-
-
-
-
-
   {
     "Action": {
       "Operation": "DUPLICATE",
@@ -1530,9 +1630,6 @@
       }
     }
   },
-
-
-
   {
     "Action": {
       "Operation": "REPLACE_TEXT",
@@ -1543,28 +1640,6 @@
       }
     }
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "Action": {
       "Operation": "REPLACE_TEXT",
@@ -1584,5 +1659,91 @@
         "value": "RHEL-HA "
       }
     }
+  },
+  {
+    "Action": {
+      "Operation": "MERGE_COLUMNS_AND_VALUES",
+      "Parameters": {
+          "sourceColumns": "[\"Location\",\"Instance Type\", \"Operating System\",\"Tenancy\"]",
+          "delimiter": "|",
+          "targetColumn": "PricingKey"
+      }
   }
+},
+{
+  "Action": {
+    "Operation": "BOOLEAN_OPERATION",
+    "Parameters": {
+      "falseValueExpression": "`PricePerUnit`/`Rsvd Term`/8760",
+      "functionStepType": "BOOLEAN_OPERATION",
+      "targetColumn": "HourFactor",
+      "trueValueExpression": "`PricePerUnit`",
+      "valueExpression": "`Unit` = 'Hrs'",
+      "withExpressions": "[]"
+    }
+  }
+},
+{
+  "Action": {
+    "Operation": "MULTIPLY",
+    "Parameters": {
+      "functionStepType": "MULTIPLY",
+      "sourceColumn1": "HourFactor",
+      "targetColumn": "oneyearcost",
+      "value2": "8760"
+    }
+  }
+},
+{
+  "Action": {
+    "Operation": "MULTIPLY",
+    "Parameters": {
+      "functionStepType": "MULTIPLY",
+      "sourceColumn1": "HourFactor",
+      "targetColumn": "threeyearcost",
+      "value2": "26280"
+    }
+  }
+},
+
+
+
+
+
+{
+  "Action": {
+    "Operation": "MERGE",
+    "Parameters": {
+      "delimiter": " ",
+      "sourceColumns": "[\"LeaseContractLength\",\"OfferingClass\",\"PurchaseOption\"]",
+      "targetColumn": "LeaseAndPurchase"
+    }
+  }
+},
+{
+  "Action": {
+    "Operation": "REMOVE_COMBINED",
+    "Parameters": {
+      "collapseConsecutiveWhitespace": "false",
+      "customValue": "0yr",
+      "removeAllPunctuation": "false",
+      "removeAllQuotes": "false",
+      "removeAllWhitespace": "false",
+      "removeCustomCharacters": "false",
+      "removeCustomValue": "true",
+      "removeLeadingAndTrailingPunctuation": "false",
+      "removeLeadingAndTrailingQuotes": "false",
+      "removeLeadingAndTrailingWhitespace": "true",
+      "removeLetters": "false",
+      "removeNumbers": "false",
+      "removeSpecialCharacters": "false",
+      "sourceColumn": "LeaseAndPurchase"
+    }
+  }
+}
+
+
+
+
+
 ]
