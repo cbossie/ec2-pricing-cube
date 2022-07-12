@@ -8,37 +8,24 @@ parser = argparse.ArgumentParser(
         description="Given an input list of servers, this script optimizes dedicated host placement for the servers.")
 parser.add_argument('--input-file', '-i', required=True,
                         action="store", dest="input_file_path")
-parser.add_argument('--output-file', '-o', required=False,
-                        action="store", dest="output_file_path")
-parser.add_argument('--windows-server-entitlements', '-w', required=False,
-                        action="store", dest="ws_entitlements_cpus", type=int)
+parser.add_argument('--input_skip_num', '-n', required=True,
+                        action="store", dest="input_skip_num")
 args = parser.parse_args()
+
 with open(args.input_file_path) as f:
-    
-    df = pd.read_csv(f,skiprows=5)
+    df = pd.read_csv(f,skiprows=int(args.input_skip_num))
 
 #fixing column names
 df.columns = df.columns.str.replace('\n',' ')
 df.columns = df.columns.str.replace('  ',' ')
 
-df.drop(['SKU','EffectiveDate','OfferTermCode','RateCode','Currency','serviceCode','Location Type','Processor Architecture'\
-              ,'Storage Media','Volume Type','Max Volume Size','Max IOPS/volume','Max IOPS Burst Performance',\
-            'Max throughput/volume','Provisioned','From Location Type','usageType','operation','Processor Features', \
-         'Product Type', 'Region Code', 'Resource Type','serviceName', 'SnapshotArchiveFeeType', 'To Region Code',\
-       'Volume API Name', 'VPCNetworkingSupport','Group Description','Transfer Type','From Location','To Location',\
-         'To Location Type','Physical Cores','Group', 'MarketOption','instanceSKU','From Region Code', \
-         'Intel AVX2 Available', 'Elastic Graphics Type','Intel AVX Available', 'Intel Turbo Available',\
-         'ClassicNetworkingSupport','AvailabilityZone','Normalization Size Factor', 'EBS Optimized','instanceSKU',\
-        'StartingRange','EndingRange','Instance Capacity - 10xlarge', 'Instance Capacity - 12xlarge',\
-       'Instance Capacity - 16xlarge', 'Instance Capacity - 18xlarge','Current Generation',\
-       'Instance Capacity - 24xlarge', 'Instance Capacity - 2xlarge',"PriceDescription","License Model",\
-       'Instance Capacity - 32xlarge', 'Instance Capacity - 4xlarge',\
-       'Instance Capacity - 8xlarge', 'Instance Capacity - 9xlarge',\
-       'Instance Capacity - large', 'Instance Capacity - medium',\
-       'Instance Capacity - metal', 'Instance Capacity - xlarge','RelatedTo']\
-        , axis=1,inplace=True)
+df=df[['TermType', 'Unit', 'PricePerUnit', 'LeaseContractLength',
+       'PurchaseOption', 'OfferingClass', 'Location','Instance Type', 'vCPU',
+       'Clock Speed', 'Memory', 'Storage', 'Network Performance', 'Tenancy',
+       'Operating System', 'Enhanced Networking Supported','Pre Installed S/W']]
 
-df["Location"]=df["Location"].apply(lambda x: re.split('\)|\(',x) if type(x)==str else x)
+df["Location"]=df["Location"].apply(lambda x: x if x not in LOCAT_MAP else LOCAT_MAP[x])
+df["Location"]=df["Location"].apply(lambda x: re.split('\)|\(',x) if (type(x)==str and ')' in x) else x)
 df["Location"]=df["Location"].apply(lambda x:  x if (type(x)!= list) else ("Gov "+x[1] if ("GovCloud" in x[0])\
                      else (x[1] if (x[2] =='') else x[1]+x[2])))
 df["Location"]=df["Location"].apply(lambda x:  x if (type(x)!= str) else (x if ("N." not in x) else (x.replace("N. Virginia","Virginia") if ("N. Virginia" in x)\
@@ -72,21 +59,16 @@ df['Network Performance'] = df['Network Performance'].apply(lambda x: x if (type
             ("Mod" if (x=="Moderate") else x))))))
 
 df['LeaseContractLength']=df['LeaseContractLength'].apply(lambda x: x if (type(x)!= str) else x.replace(" ",""))
-
 grouper={}
 for i in df.iterrows():
     num=i[0]
     row=i[1]
-    
+
     if pd.isna(row[LOCAT_COL]):
         continue
     elif pd.isna(row[CPU_COL]):
         continue
     elif pd.isna(row[TENAN_COL]):
-        continue
-    elif pd.isna(row[STORAGE_COL]):
-        continue
-    elif row[TENAN_COL]=="Host" and row[PRICE_COL]==0:
         continue
     if row[TENAN_COL] not in grouper:
         grouper[row[TENAN_COL]]={}
@@ -122,13 +104,11 @@ for i in df.iterrows():
         temp[9]=row[NET_COL]
         stor=row[STORAGE_COL]
         temp[10]=stor
-        if stor!="EBS only":
-            if not pd.isna(stor):
-                temper=stor.split()
-                temp[11]=temper[len(temper)-1]
-                temp[12]=int(temper[0])*int(temper[2])
-            else:
-                temp[11]=np.NaN
+        if stor!="EBS only" and not pd.isna(stor):
+            temper=stor.split()
+            temp[11]=temper[len(temper)-1]
+            temp[12]=int(temper[0])*int(temper[2])
+
         else:
             temp[11]=np.NaN
             temp[12]=np.NaN
@@ -145,10 +125,9 @@ for i in df.iterrows():
     else:
 
         if row[UNIT_COL]=="Hrs":
-            temp[COST_MAP[row[CLASS_COL]+row[LEN_COL]+row[OPTION_COL]]]+=int(row[PRICE_COL])*8760*int(row[LEN_COL][0])
+            temp[COST_MAP[row[CLASS_COL]+row[LEN_COL]+row[OPTION_COL]]]+=row[PRICE_COL]*8760*int(row[LEN_COL][0])
         else:
-            temp[COST_MAP[row[CLASS_COL]+row[LEN_COL]+row[OPTION_COL]]]+=int(row[PRICE_COL])
-
+            temp[COST_MAP[row[CLASS_COL]+row[LEN_COL]+row[OPTION_COL]]]+=row[PRICE_COL]
 
 for a in grouper:
     for b in grouper[a]:
@@ -172,7 +151,7 @@ for a in grouper["keys"]:
                         for i in range(32):
                             t[i].append(grouper[a][b][c][d][e][f][i])
 
-new_df=pd.DataFrame(t[0],columns=["Location"])
+new_df=pd.DataFrame(t[0],columns=[FINAL_COLS[0]])
 for i in range(1,32):
-    new_df[FINAL_COLS[i-1]]=t[i]
+    new_df[FINAL_COLS[i]]=t[i]
 new_df.to_csv("mapped_output.csv", index = False)

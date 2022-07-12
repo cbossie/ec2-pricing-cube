@@ -4,24 +4,23 @@ PRICE_COL=2
 LEN_COL=3
 OPTION_COL=4
 CLASS_COL=5
-FAM_COL=6
-LOCAT_COL=7
-INST_COL=8
-CPU_COL=10
-CLOCK_COL=12
-RAM_COL=13
-STORAGE_COL=14
-NET_COL=15
-TENAN_COL=16
-OS_COL=17
-ENCH_COL=21
-MODEL_COL=25
-FINAL_COLS=["Instance Type","vCPU","RAM (GB)","Max IOPs","Maximum Throughput Mb/s","Dedicated EBS Bandwidth",\
+LOCAT_COL=6
+INST_COL=7
+CPU_COL=8
+CLOCK_COL=9
+RAM_COL=10
+STORAGE_COL=11
+NET_COL=12
+TENAN_COL=13
+OS_COL=14
+ENCH_COL=15
+MODEL_COL=16
+FINAL_COLS=["Location","Instance Type","vCPU","RAM (GB)","Max IOPs","Maximum Throughput Mb/s","Dedicated EBS Bandwidth",\
             "Clock Speed","Enchanced Networking","Network Perf", "Storage","Instc Store Disk","Instc Store GBs",\
             "OS","Tenancy","SQL Lic Model","Hourly OnDmd","Monthly OnDmd","1Yr OnDmd","3Yr OnDmd",\
             "All 1Yr Std AURI","All 3Yr Std AURI","All 1Yr Cnvt AURI","All 3Yr Cnvt AURI",\
             "Parital 1Yr Std AURI","Parital 3Yr Std AURI","Parital 1Yr Cnvt AURI","Parital 3Yr Cnvt AURI",\
-            "No 1Yr Std AURI","No 3Yr Std AURI","No 1Yr Cnvt AURI","No 3Yr Cnvt AURI",]
+            "No 1Yr Std AURI","No 3Yr Std AURI","No 1Yr Cnvt AURI","No 3Yr Cnvt AURI"]
 COST_MAP={
     "standard1yrAll Upfront":20,
     "standard3yrAll Upfront":21,
@@ -47,4 +46,7 @@ COST_MAP={
     "convertible3yrNo Upfront":31,
     "convertible1yrNoUpfront":30,
     "convertible3yrNoUpfront":31,
+}
+LOCAT_MAP={
+    "Africa (Cape Town)":"Africa Cape Town"
 }
