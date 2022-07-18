@@ -4,6 +4,8 @@ import numpy as np
 import re
 
 from const import *
+
+
 parser = argparse.ArgumentParser(
         description="Given an input list of servers, this script optimizes dedicated host placement for the servers.")
 parser.add_argument('--input-file', '-i', required=True,
@@ -19,11 +21,13 @@ with open(args.input_file_path) as f:
 df.columns = df.columns.str.replace('\n',' ')
 df.columns = df.columns.str.replace('  ',' ')
 
+#grab only needed cols
 df=df[['TermType', 'Unit', 'PricePerUnit', 'LeaseContractLength',
        'PurchaseOption', 'OfferingClass', 'Location','Instance Type', 'vCPU',
        'Clock Speed', 'Memory', 'Storage', 'Network Performance', 'Tenancy',
-       'Operating System', 'Enhanced Networking Supported','Pre Installed S/W']]
+       'Operating System','Dedicated EBS Throughput', 'Enhanced Networking Supported','Pre Installed S/W']]
 
+# rename/mapping variable names for multiple columns 
 df["Location"]=df["Location"].apply(lambda x: x if x not in LOCAT_MAP else LOCAT_MAP[x])
 df["Location"]=df["Location"].apply(lambda x: re.split('\)|\(',x) if (type(x)==str and ')' in x) else x)
 df["Location"]=df["Location"].apply(lambda x:  x if (type(x)!= list) else ("Gov "+x[1] if ("GovCloud" in x[0])\
@@ -59,6 +63,11 @@ df['Network Performance'] = df['Network Performance'].apply(lambda x: x if (type
             ("Mod" if (x=="Moderate") else x))))))
 
 df['LeaseContractLength']=df['LeaseContractLength'].apply(lambda x: x if (type(x)!= str) else x.replace(" ",""))
+
+df['Dedicated EBS Throughput']=df['Dedicated EBS Throughput'].apply(lambda x: x if (type(x)!=str) else\
+                                ( x if (len(x.split())==2) else x.split()[2]+" "+x.split()[3]) )
+
+# starts sorting all rows into correct path
 grouper={}
 for i in df.iterrows():
     num=i[0]
@@ -70,35 +79,39 @@ for i in df.iterrows():
         continue
     elif pd.isna(row[TENAN_COL]):
         continue
-    if row[TENAN_COL] not in grouper:
-        grouper[row[TENAN_COL]]={}
-    temp=grouper[row[TENAN_COL]]
+
+    if row[SORT_ORDER["first"]] not in grouper:
+        grouper[row[SORT_ORDER["first"]]]={}
+    temp=grouper[row[SORT_ORDER["first"]]]
     
-    if row[LOCAT_COL] not in temp:
-        temp[row[LOCAT_COL]]={}
-    temp=temp[row[LOCAT_COL]]
+    if row[SORT_ORDER["sec"]] not in temp:
+        temp[row[SORT_ORDER["sec"]]]={}
+    temp=temp[row[SORT_ORDER["sec"]]]
     
-    if row[INST_COL] not in temp:
-        temp[row[INST_COL]]={}
-    temp=temp[row[INST_COL]]
+    if row[SORT_ORDER["third"]] not in temp:
+        temp[row[SORT_ORDER["third"]]]={}
+    temp=temp[row[SORT_ORDER["third"]]]
     
-    if row[STORAGE_COL] not in temp:
-        temp[row[STORAGE_COL]]={}
-    temp=temp[row[STORAGE_COL]]
+    if row[SORT_ORDER["forth"]] not in temp:
+        temp[row[SORT_ORDER["forth"]]]={}
+    temp=temp[row[SORT_ORDER["forth"]]]
     
-    if row[OS_COL] not in temp:
-        temp[row[OS_COL]]={}
-    temp=temp[row[OS_COL]]
+    if row[SORT_ORDER["fif"]] not in temp:
+        temp[row[SORT_ORDER["fif"]]]={}
+    temp=temp[row[SORT_ORDER["fif"]]]
     
-    if row[MODEL_COL] not in temp:
-        temp[row[MODEL_COL]]=[0]*32
-    temp=temp[row[MODEL_COL]]
+    if row[SORT_ORDER["sixth"]] not in temp:
+        temp[row[SORT_ORDER["sixth"]]]=[0]*32
+    temp=temp[row[SORT_ORDER["sixth"]]]
         
     if temp[0]==0:
         temp[0]=row[LOCAT_COL]
         temp[1]=row[INST_COL]
         temp[2]=row[CPU_COL]
         temp[3]=row[RAM_COL]
+        if not pd.isna(row[IOP_COL]):
+            temp[5]=float(row[IOP_COL].split()[0])/8
+            temp[6]=row[IOP_COL]
         temp[7]=row[CLOCK_COL]
         temp[8]=row[ENCH_COL]
         temp[9]=row[NET_COL]
@@ -129,6 +142,7 @@ for i in df.iterrows():
         else:
             temp[COST_MAP[row[CLASS_COL]+row[LEN_COL]+row[OPTION_COL]]]+=row[PRICE_COL]
 
+# sort each subgroup
 for a in grouper:
     for b in grouper[a]:
         for c in grouper[a][b]:
@@ -141,6 +155,7 @@ for a in grouper:
     grouper[a]["keys"]=sorted(grouper[a].keys())
 grouper["keys"]=sorted(grouper.keys())
 
+# add each row in order to a list
 t = [ [] for i in range(32)]
 for a in grouper["keys"]:
     for b in grouper[a]["keys"]:
@@ -151,6 +166,7 @@ for a in grouper["keys"]:
                         for i in range(32):
                             t[i].append(grouper[a][b][c][d][e][f][i])
 
+# put the list in a df and save as csv
 new_df=pd.DataFrame(t[0],columns=[FINAL_COLS[0]])
 for i in range(1,32):
     new_df[FINAL_COLS[i]]=t[i]
