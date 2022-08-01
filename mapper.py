@@ -64,8 +64,10 @@ df['Network Performance'] = df['Network Performance'].apply(lambda x: x if (type
 
 df['LeaseContractLength']=df['LeaseContractLength'].apply(lambda x: x if (type(x)!= str) else x.replace(" ",""))
 
+'''
 df['Dedicated EBS Throughput']=df['Dedicated EBS Throughput'].apply(lambda x: x if (type(x)!=str) else\
                                 ( x if (len(x.split())==2) else x.split()[2]+" "+x.split()[3]) )
+'''
 
 # starts sorting all rows into correct path
 grouper={}
@@ -109,9 +111,11 @@ for i in df.iterrows():
         temp[1]=row[INST_COL]
         temp[2]=row[CPU_COL]
         temp[3]=row[RAM_COL]
+        '''
         if not pd.isna(row[IOP_COL]):
             temp[5]=float(row[IOP_COL].split()[0])/8
             temp[6]=row[IOP_COL]
+        '''
         temp[7]=row[CLOCK_COL]
         temp[8]=row[ENCH_COL]
         temp[9]=row[NET_COL]
