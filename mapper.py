@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import re
 import boto3
-
+import timeit
 
 
 from const import *
@@ -29,19 +29,26 @@ df=df[['TermType', 'Unit', 'PricePerUnit', 'LeaseContractLength',
        'Clock Speed', 'Memory', 'Storage', 'Network Performance', 'Tenancy',
        'Operating System','Dedicated EBS Throughput', 'Enhanced Networking Supported','Pre Installed S/W']]
 
+
 all_instances=set(df[df["Instance Type"].notna()]["Instance Type"].unique())
 all_instances=all_instances.difference(INVALID_INSTANCES)
 all_instances=list(all_instances)
-test= boto3.client('ec2')
-test2=test.describe_instance_types(
-    DryRun=False,
-    InstanceTypes=all_instances,
-    
-)
 IOPS_match={}
-for i in test2["InstanceTypes"]:
-    temp=i['EbsInfo']['EbsOptimizedInfo']
-    IOPS_match[i['InstanceType']]=[temp['BaselineIops'],temp['MaximumThroughputInMBps'],temp['MaximumBandwidthInMbps']]
+
+for i in range(int(np.ceil(len(all_instances)/100))):
+    test= boto3.client('ec2')
+    cap= min(((i+1)*100), len(all_instances))
+
+    test2=test.describe_instance_types(
+        DryRun=False,
+        InstanceTypes=all_instances[(i*100):cap],
+
+    )
+    for i in test2["InstanceTypes"]:
+        if i['EbsInfo']['EbsOptimizedSupport']=="unsupported":
+            continue
+        temp=i['EbsInfo']['EbsOptimizedInfo']
+        IOPS_match[i['InstanceType']]=[temp['BaselineIops'],temp['MaximumThroughputInMBps'],temp['MaximumBandwidthInMbps']]
 
 # rename/mapping variable names for multiple columns 
 df["Location"]=df["Location"].apply(lambda x: x if x not in LOCAT_MAP else LOCAT_MAP[x])
@@ -80,10 +87,6 @@ df['Network Performance'] = df['Network Performance'].apply(lambda x: x if (type
 
 df['LeaseContractLength']=df['LeaseContractLength'].apply(lambda x: x if (type(x)!= str) else x.replace(" ",""))
 
-'''
-df['Dedicated EBS Throughput']=df['Dedicated EBS Throughput'].apply(lambda x: x if (type(x)!=str) else\
-                                ( x if (len(x.split())==2) else x.split()[2]+" "+x.split()[3]) )
-'''
 
 # starts sorting all rows into correct path
 grouper={}
@@ -119,7 +122,7 @@ for i in df.iterrows():
     temp=temp[row[SORT_ORDER["fif"]]]
     
     if row[SORT_ORDER["sixth"]] not in temp:
-        temp[row[SORT_ORDER["sixth"]]]=[0]*32
+        temp[row[SORT_ORDER["sixth"]]]=[np.nan]*32
     temp=temp[row[SORT_ORDER["sixth"]]]
         
     if temp[0]==0:

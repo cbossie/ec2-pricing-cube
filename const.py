@@ -60,4 +60,12 @@ SORT_ORDER={
     "sixth":MODEL_COL, # BYOL, SQL Ent, SQL,Std, SQL Web
 }
 
-INVALID_INSTANCES={"d3en.12xlarge", "d3en.8xlarge", "g5.16xlarge", "mac1", "r6g", "u-12tb1.112xlarge", "u-24tb1", "vt1", "x2iezn.metal"}
+INVALID_INSTANCES={"d3en.12xlarge", "d3en.8xlarge", "g5.16xlarge", "mac1", "r6g", "u-12tb1.112xlarge", "u-24tb1", "vt1", "x2iezn.metal","c1.medium", "c1.xlarge", "c3.8xlarge",\
+        "c6a", "d2", "d3en.6xlarge", "dl1.24xlarge", "g5.4xlarge", "g5g.2xlarge", "g5g.8xlarge", "m3", "m3.large", "m3.medium", "m3.xlarge", "m6g", "p3dn", "p4d", "r6gd", "u-18tb1", \
+        "u-3tb1.56xlarge", "u-6tb1", "u-6tb1.metal", "u-9tb1", "u-9tb1.112xlarge", "u-9tb1.metal", "vt1.3xlarge","c5d", "c6id", "cc2.8xlarge", "f1.16xlarge", "g5", "g5.48xlarge", \
+        "g5g.16xlarge", "hs1.8xlarge", "i2", "inf1", "m1.xlarge", "m3.2xlarge", "m6id", "mac2.metal", "p3dn.24xlarge", "p4de", "r3", "r4", "r5b", "r5dn", "r5n", "u-12tb1.metal", \
+        "u-24tb1.metal", "vt1.6xlarge", "x2iedn", "x2iezn.2xlarge", "x2iezn.6xlarge","a1", "c3.xlarge", "d3en.4xlarge", "g2.2xlarge", "g4dn", "g5.8xlarge", "g5.xlarge", "g5g.metal", \
+        "h1", "m2.2xlarge", "m4", "m5n", "m5zn", "m6gd", "p3", "r5d", "vt1.24xlarge", "x1", "x2iezn.4xlarge","c6gn.metal", "d3en.2xlarge", "d3en.xlarge", "f1.4xlarge", "i2.large", "m6i",\
+        "p4de.24xlarge", "t3", "x1e", "x2gd","c3", "c6g", "f1.2xlarge", "g5.24xlarge", "m1.small", "r5", "u-18tb1.metal", "x2iezn","c5n", "c6i", "g5g.4xlarge", "m2.xlarge", "c3.4xlarge", \
+        "c5", "f1", "g5.2xlarge", "m2.4xlarge", "u-12tb1", "x2iezn.8xlarge","g4ad", "m5", "m6a", "r6id","c3.2xlarge", "c3.large", "c4", "c6gd", "c6gn","c7g", "cr1.8xlarge", "dl1", "g2.8xlarge", "g3",\
+        "g5.12xlarge", "g5g", "g5g.xlarge", "i3", "i3en", "i3p.16xlarge", "i4i", "im4gn","m1.large", "m1.medium","m5d", "m5dn","mac2", "p2","z1d","x2idn","r6i", "t1.micro", "x2iezn.12xlarge"}
