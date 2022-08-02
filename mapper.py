@@ -3,13 +3,11 @@ import pandas as pd
 import numpy as np
 import re
 import boto3
-import timeit
+
 
 
 from const import *
 
-
-print("hi")
 parser = argparse.ArgumentParser(
         description="Given an input list of servers, this script optimizes dedicated host placement for the servers.")
 parser.add_argument('--input-file', '-i', required=True,
@@ -30,8 +28,6 @@ df=df[['TermType', 'Unit', 'PricePerUnit', 'LeaseContractLength',
        'PurchaseOption', 'OfferingClass', 'Location','Instance Type', 'vCPU',
        'Clock Speed', 'Memory', 'Storage', 'Network Performance', 'Tenancy',
        'Operating System','Dedicated EBS Throughput', 'Enhanced Networking Supported','Pre Installed S/W']]
-print("hi")
-start = timeit.default_timer()
 
 all_instances=set(df[df["Instance Type"].notna()]["Instance Type"].unique())
 all_instances=all_instances.difference(INVALID_INSTANCES)
@@ -46,10 +42,6 @@ IOPS_match={}
 for i in test2["InstanceTypes"]:
     temp=i['EbsInfo']['EbsOptimizedInfo']
     IOPS_match[i['InstanceType']]=[temp['BaselineIops'],temp['MaximumThroughputInMBps'],temp['MaximumBandwidthInMbps']]
-stop = timeit.default_timer()
-
-print('Time: ', stop - start)
-print("hi")
 
 # rename/mapping variable names for multiple columns 
 df["Location"]=df["Location"].apply(lambda x: x if x not in LOCAT_MAP else LOCAT_MAP[x])
