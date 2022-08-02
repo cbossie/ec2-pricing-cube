@@ -122,7 +122,7 @@ for i in df.iterrows():
     temp=temp[row[SORT_ORDER["fif"]]]
     
     if row[SORT_ORDER["sixth"]] not in temp:
-        temp[row[SORT_ORDER["sixth"]]]=[np.nan]*32
+        temp[row[SORT_ORDER["sixth"]]]=[np.nan]*15+[0]*17
     temp=temp[row[SORT_ORDER["sixth"]]]
         
     if temp[0]==0:
