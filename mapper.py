@@ -2,10 +2,14 @@ import argparse
 import pandas as pd
 import numpy as np
 import re
+import boto3
+import timeit
+
 
 from const import *
 
 
+print("hi")
 parser = argparse.ArgumentParser(
         description="Given an input list of servers, this script optimizes dedicated host placement for the servers.")
 parser.add_argument('--input-file', '-i', required=True,
@@ -26,6 +30,26 @@ df=df[['TermType', 'Unit', 'PricePerUnit', 'LeaseContractLength',
        'PurchaseOption', 'OfferingClass', 'Location','Instance Type', 'vCPU',
        'Clock Speed', 'Memory', 'Storage', 'Network Performance', 'Tenancy',
        'Operating System','Dedicated EBS Throughput', 'Enhanced Networking Supported','Pre Installed S/W']]
+print("hi")
+start = timeit.default_timer()
+
+all_instances=set(df[df["Instance Type"].notna()]["Instance Type"].unique())
+all_instances=all_instances.difference(INVALID_INSTANCES)
+all_instances=list(all_instances)
+test= boto3.client('ec2')
+test2=test.describe_instance_types(
+    DryRun=False,
+    InstanceTypes=all_instances,
+    
+)
+IOPS_match={}
+for i in test2["InstanceTypes"]:
+    temp=i['EbsInfo']['EbsOptimizedInfo']
+    IOPS_match[i['InstanceType']]=[temp['BaselineIops'],temp['MaximumThroughputInMBps'],temp['MaximumBandwidthInMbps']]
+stop = timeit.default_timer()
+
+print('Time: ', stop - start)
+print("hi")
 
 # rename/mapping variable names for multiple columns 
 df["Location"]=df["Location"].apply(lambda x: x if x not in LOCAT_MAP else LOCAT_MAP[x])
@@ -111,11 +135,10 @@ for i in df.iterrows():
         temp[1]=row[INST_COL]
         temp[2]=row[CPU_COL]
         temp[3]=row[RAM_COL]
-        '''
-        if not pd.isna(row[IOP_COL]):
-            temp[5]=float(row[IOP_COL].split()[0])/8
-            temp[6]=row[IOP_COL]
-        '''
+        if row[INST_COL] in IOPS_match:
+            temp[4]=float(IOPS_match[row[INST_COL]][0])
+            temp[5]=float(IOPS_match[row[INST_COL]][1])
+            temp[6]=float(IOPS_match[row[INST_COL]][2])
         temp[7]=row[CLOCK_COL]
         temp[8]=row[ENCH_COL]
         temp[9]=row[NET_COL]

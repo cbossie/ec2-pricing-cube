@@ -59,3 +59,5 @@ SORT_ORDER={
     "fif":OS_COL, # Linux, Win, RHEL, RHEL-HA, SUSE
     "sixth":MODEL_COL, # BYOL, SQL Ent, SQL,Std, SQL Web
 }
+
+INVALID_INSTANCES={"d3en.12xlarge", "d3en.8xlarge", "g5.16xlarge", "mac1", "r6g", "u-12tb1.112xlarge", "u-24tb1", "vt1", "x2iezn.metal"}
