@@ -30,15 +30,16 @@ df=df[['TermType', 'Unit', 'PricePerUnit', 'LeaseContractLength',
        'Operating System','Dedicated EBS Throughput', 'Enhanced Networking Supported','Pre Installed S/W']]
 
 
-all_instances=set(df[df["Instance Type"].notna()]["Instance Type"].unique())
+temp=df[df["Instance Type"].notna()]
+all_instances=set(temp[temp["Instance Type"].str.contains("\.")]["Instance Type"].unique())
 all_instances=all_instances.difference(INVALID_INSTANCES)
 all_instances=list(all_instances)
+
 IOPS_match={}
 
 for i in range(int(np.ceil(len(all_instances)/100))):
     test= boto3.client('ec2')
     cap= min(((i+1)*100), len(all_instances))
-
     test2=test.describe_instance_types(
         DryRun=False,
         InstanceTypes=all_instances[(i*100):cap],
@@ -122,7 +123,7 @@ for i in df.iterrows():
     temp=temp[row[SORT_ORDER["fif"]]]
     
     if row[SORT_ORDER["sixth"]] not in temp:
-        temp[row[SORT_ORDER["sixth"]]]=[0]+[np.nan]*14+[0]*17
+        temp[row[SORT_ORDER["sixth"]]]=[np.nan]*32
     temp=temp[row[SORT_ORDER["sixth"]]]
         
     if temp[0]==0:
