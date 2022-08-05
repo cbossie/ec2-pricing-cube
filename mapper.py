@@ -29,22 +29,39 @@ df=df[['TermType', 'Unit', 'PricePerUnit', 'LeaseContractLength',
        'Clock Speed', 'Memory', 'Storage', 'Network Performance', 'Tenancy',
        'Operating System','Dedicated EBS Throughput', 'Enhanced Networking Supported','Pre Installed S/W']]
 
-
+# gets info on IOPS and max throughput
 temp=df[df["Instance Type"].notna()]
 all_instances=set(temp[temp["Instance Type"].str.contains("\.")]["Instance Type"].unique())
-all_instances=all_instances.difference(INVALID_INSTANCES)
 all_instances=list(all_instances)
-
+all_instances.sort()
 IOPS_match={}
 
-for i in range(int(np.ceil(len(all_instances)/100))):
-    test= boto3.client('ec2')
-    cap= min(((i+1)*100), len(all_instances))
-    test2=test.describe_instance_types(
-        DryRun=False,
-        InstanceTypes=all_instances[(i*100):cap],
+for i in range(int(np.ceil(len(all_instances)/10))):
+    test2={"InstanceTypes":[]}
+    try:
+        test= boto3.client('ec2',region_name ='us-east-1')
+        cap= min(((i+1)*10), len(all_instances))
+        test2=test.describe_instance_types(
+            DryRun=False,
+            InstanceTypes=all_instances[(i*10):cap],
 
-    )
+        )
+    except:
+        for sub in range(i*10,i*10+10):
+            try:
+                test= boto3.client('ec2',region_name ='us-east-1')
+                temp=test.describe_instance_types(
+                    DryRun=False,
+                    InstanceTypes=[all_instances[sub]],
+
+                )
+
+                test2["InstanceTypes"].append(temp["InstanceTypes"][0])
+            except:
+                continue
+            
+
+            
     for i in test2["InstanceTypes"]:
         if i['EbsInfo']['EbsOptimizedSupport']=="unsupported":
             continue
@@ -123,7 +140,7 @@ for i in df.iterrows():
     temp=temp[row[SORT_ORDER["fif"]]]
     
     if row[SORT_ORDER["sixth"]] not in temp:
-        temp[row[SORT_ORDER["sixth"]]]=[np.nan]*32
+        temp[row[SORT_ORDER["sixth"]]]=[0]+[np.nan]*14+[0]*17
     temp=temp[row[SORT_ORDER["sixth"]]]
         
     if temp[0]==0:

@@ -60,10 +60,3 @@ SORT_ORDER={
     "sixth":MODEL_COL, # BYOL, SQL Ent, SQL,Std, SQL Web
 }
 
-INVALID_INSTANCES={'c1.medium', 'c1.xlarge','c3.2xlarge', 'c3.4xlarge', 'c3.8xlarge', 'c3.large', 'c3.xlarge', 'c6gn.metal', 'cc2.8xlarge', 'cr1.8xlarge', 'd3en.12xlarge',\
-                'd3en.2xlarge', 'd3en.4xlarge', 'd3en.6xlarge','d3en.8xlarge', 'd3en.xlarge', 'dl1.24xlarge', 'f1.16xlarge', 'f1.2xlarge', 'f1.4xlarge', 'g2.2xlarge', 'g2.8xlarge', \
-                'g5.12xlarge', 'g5.16xlarge', 'g5.24xlarge', 'g5.2xlarge', 'g5.4xlarge', 'g5.8xlarge', 'g5.xlarge', 'g5.48xlarge','g5g.16xlarge', 'g5g.2xlarge', 'g5g.4xlarge', 'g5g.8xlarge',\
-                'g5g.metal', 'g5g.xlarge', 'hs1.8xlarge', 'i2.large', 'i3p.16xlarge', 'm1.large', 'm1.medium', 'm1.small', 'm1.xlarge', 'm2.2xlarge', 'm2.4xlarge', 'm2.xlarge', \
-                'm3.2xlarge', 'm3.large', 'm3.medium', 'm3.xlarge', 'mac2.metal', 'p3dn.24xlarge','p4de.24xlarge', 't1.micro', 'u-12tb1.112xlarge', 'u-12tb1.metal', 'u-18tb1.metal', \
-                'u-24tb1.metal', 'u-3tb1.56xlarge', 'u-6tb1.metal', 'u-9tb1.112xlarge', 'u-9tb1.metal', 'vt1.24xlarge', 'vt1.3xlarge', 'vt1.6xlarge', 'x2iezn.12xlarge', 'x2iezn.2xlarge',\
-                   'x2iezn.4xlarge', 'x2iezn.6xlarge', 'x2iezn.8xlarge','x2iezn.metal'}
